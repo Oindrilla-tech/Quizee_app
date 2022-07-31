@@ -1,0 +1,25 @@
+.quizOuter {
+    padding: 1em;
+}
+
+.quizbox {
+    padding: 0px 1em;
+    background-color: white;
+    border-radius: 0.8em;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.quizboxhead {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.qstn{
+    font-weight: 600;
+    font-size: 1.2em;
+    text-align: center;
+}

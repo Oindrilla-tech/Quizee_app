@@ -1,8 +1,8 @@
 import React from 'react';
 import "../Components/css/button.css"
 
-export const  Button = () => {
+export const  Button = ({clickEvent}) => {
   return (
-    <div className='btn' > Start Quiz </div>
+    <button className='btn' onClick={clickEvent}> Start Quiz </button>
   )
 }
