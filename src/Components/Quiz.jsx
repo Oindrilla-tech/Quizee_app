@@ -14,7 +14,7 @@ const Quiz = () => {
           </p>
           </div>
           <div className="qstn">
-          <p style={{}}>Technology</p>
+          <p style={{"font-size":"0.7em","font-weight":"600","color":"gray","padding":"0.5em"}}>Technology</p>
           <p>What is the first product launched by apple?</p>
         </div>
       </div>
