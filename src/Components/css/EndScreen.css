@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100vh-5em);
     
 }
 
@@ -16,15 +16,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height:70%;
     width: 100%;
-    margin-top: 8em;
+
+    /* margin:auto 0px; */
     /* width: 100%; */
 
 }
 
 .score {
-    padding-top: 11em;
-    padding-bottom: 12em;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -54,7 +54,6 @@
     color:black;
 }
 .continue1{
-    margin-left: 1em;
     margin-top: 2em;
     text-align: center;
     width: 100%;
