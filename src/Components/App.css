@@ -1,7 +1,9 @@
 html{
-  background-color:#A243C6 ;
+  background-image: url("../../public/image/Union.png"),linear-gradient(to left bottom, #670aa4, #6d0ab5, #720cc6, #760ed8, #7912eb);
+  background-position: center;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
 }
-
 .App{
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
@@ -11,4 +13,16 @@ html{
   }
   p{
     margin:0px;
+  }
+
+  .drop{
+    -webkit-box-shadow: 2px 4px 29px -17px rgba(0,0,0,0.72);
+-moz-box-shadow: 2px 4px 29px -17px rgba(0,0,0,0.72);
+box-shadow: 2px 4px 29px -17px rgba(0,0,0,0.72);
+border: 0.2px rgb(222, 222, 222) solid !important;
+
+  }
+  fieldset{
+    border: 0.2px rgb(222, 222, 222) solid !important;
+
   }

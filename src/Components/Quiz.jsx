@@ -7,25 +7,27 @@ import CircularProgress, {
 } from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 import AlertDialog from './Dialog';
+import AlertDialog2 from './Dialog2';
 const Quiz = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const [question, setQuestion] = useState([])
   const [qNo, setQno] = useState(0)
   const [options, setOptions] = useState([])
   const [val, setvalue] = useState("")
   const [timer, setTimer] = useState(10)
-  const [res,setRes]=useState([])
-  const [ready,setReady]=useState(false)
+  const [res, setRes] = useState([])
+  const [ready, setReady] = useState(false)
+  const [dataTrue,setDataTrue]=useState(true)
 
-  const resultCalc=()=>{
-let current=[{}]
-current[0]["question"]=question[qNo].question
-current[0]["givenAns"]=val
-current[0]["actualAns"]=question[qNo].correct_answer
-setRes([...res,...current])
+  const resultCalc = () => {
+    let current = [{}]
+    current[0]["question"] = question[qNo].question
+    current[0]["givenAns"] = val
+    current[0]["actualAns"] = question[qNo].correct_answer
+    setRes([...res, ...current])
   }
-console.log(res)
+  console.log(res)
   const update = () => {
     setvalue("")
     setOptions(arrayShuffle([...question[qNo + 1]?.incorrect_answers, question[qNo + 1]?.correct_answer]))
@@ -55,27 +57,22 @@ console.log(res)
     return () => {
       clearInterval(interval)
     }
-  },[timer])
-
-  // useEffect(()=>{
-  //   let intId=setInterval(()=>{
-  //     if(qNo>=question?.length -1){
-  //       clearInterval(intId)
-  //     }else{
-  //     update()
-  //     }
-  //   },10000)
-  //   return () => {
-  //     clearInterval(intId);
-  //   };
-  // })
+  }, [timer])
 
 
   useEffect(() => {
-    getQuestions().then((data) => {
-      setQuestion(data)
-      setOptions(arrayShuffle([...data[0]?.incorrect_answers, data[0]?.correct_answer]))
-    })
+    if (typeof window != "undefined") {
+      const data = JSON.parse(localStorage.getItem("questions"))
+      if (data.length > 0) {
+        setQuestion(data)
+        setOptions(arrayShuffle([...data[0]?.incorrect_answers, data[0]?.correct_answer]))
+        setDataTrue(true)
+      }else{
+        setDataTrue(false)
+      }
+    }
+
+
   }, [])
 
   console.log(question)
@@ -84,12 +81,14 @@ console.log(res)
     string = string.replace(/&#039;/g, " ")
     string = string.replace(/&amp;/g, " ")
     string = string.replace(/&ldquo;/g, " ")
+    string = string.replace(/&shy;/g, " ")
+
 
     return string
   }
   const percent = (timer / 10) * 100
 
-  return (
+  return (<>{dataTrue?
     <div className="quizOuter">
       <div className="quizbox">
         <div className="quizboxhead">
@@ -100,15 +99,15 @@ console.log(res)
             4500
           </p>
         </div>
-        {ready?<AlertDialog result={res}/>:null}
+        {ready ? <AlertDialog result={res} /> : null}
         <div className="qstn">
-        <div className='circle'>
-          <CircularProgress variant="determinate" style={{ 'color': timer >= 5 ? "green" : "red" }} value={percent} />
+          <div className='circle'>
+            <CircularProgress variant="determinate" style={{ 'color': timer >= 5 ? "green" : "red" }} value={percent} />
             <p className='timer'>{timer}</p>
           </div>
 
           <p style={{ "font-size": "0.8em", "font-weight": "600", "color": "gray", "padding": "0.5em" }}>{question[qNo]?.category && cleanString(question[qNo]?.category)}</p>
-          <p  style={{"font-weight": "600" }}>{question[qNo]?.question && cleanString(question[qNo]?.question)}</p>
+          <p style={{ "font-weight": "600" }}>{question[qNo]?.question && cleanString(question[qNo]?.question)}</p>
           <div className='options'>
             {options && options.map((item, idx) => (
               <input key={idx} className={val === cleanString(item) ? "option active" : "option"} type="button" value={cleanString(item)} onClick={(e) => { setvalue(e.target.value) }} />
@@ -116,7 +115,8 @@ console.log(res)
           </div>
         </div>
       </div>
-    </div>
+    </div>:null}
+    </>
   )
 }
 

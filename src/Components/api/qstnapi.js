@@ -8,9 +8,9 @@ const api=axios.create({
 
 
 
-export const getQuestions=async()=>{
+export const getQuestions=async(quiz,level,category)=>{
     try{
-        const res=await api.get(`?amount=${10}&type=${"multiple"}&category=${11}`)
+        const res=await api.get(`?amount=${quiz}&difficulty=${level}&category=${category}&type=multiple`)
         if(res.status==200){
             return res.data.results
         }else{

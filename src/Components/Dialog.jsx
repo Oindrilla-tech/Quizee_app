@@ -30,9 +30,9 @@ navigate("/result")
           <DialogContentText id="alert-dialog-description" style={{"display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"}}>
           {/* <CircularProgress color="secondary" size={24}/> */}
           <div>
-          <img src="image/duck.gif" style={{"width":"3em","height":"3em"}} alt=""/>
+          <img src="image/duck.gif" style={{"width":"4em","height":"4em"}} alt="loading"/>
           </div>
-            <p>Calculating Score</p>
+            <p style={{"fontWeight":"600"}}>Calculating Score</p>
           </DialogContentText>
         </DialogContent>
       </Dialog>

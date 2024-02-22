@@ -7,10 +7,8 @@ const Home = () => {
   return (
     <div className='container'>
         <div className='innercontainer'>
-            
             <div className='imgdiv'><img src="/image/Q.png" alt="" className='imgclass' /></div>
-            <Button clickEvent={()=>{Router("/quiz")}}/>
-
+            <Button clickEvent={()=>{Router("/category")}}/>
         </div>
 
         </div>
